@@ -14,6 +14,9 @@
     <!-- Google Fonts - Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -22,7 +25,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <img src="public/images/logo.png" alt="Lumbung Hijau Logo" width="32" height="32" class="me-2">
+                <img src="images/logo.png" alt="Lumbung Hijau Logo" width="32" height="32" class="me-2">
                 <span class="fw-bold fs-5">Lumbung Hijau</span>
             </a>
             
@@ -54,7 +57,7 @@
         <div class="container-fluid px-4">
             
             <!-- Hero Section -->
-            <div class="row g-4 mb-5">
+            <div class="row g-4 mb-5" data-aos="fade-up">
                 <div class="col-lg-8">
                     <div class="hero-card">
                         <div class="row h-100">
@@ -64,10 +67,13 @@
                                     Solusi Ramah Lingkungan
                                 </div>
                                 <h1 class="display-4 fw-bold text-dark mb-3">
-                                    Revolusi Pengelolaan Limbah Melalui Teknologi
+                                    Lumbung Hijau
                                 </h1>
-                                <p class="text-muted mb-4 lead">
-                                    Platform digital yang menghubungkan masyarakat dengan sistem pengelolaan limbah yang efisien dan berkelanjutan.
+                                <h2 class="h4 text-success mb-3">
+                                    Solusi Digital Pengelolaan Limbah Makanan
+                                </h2>
+                                <p class="text-muted mb-4">
+                                    Sebuah komunitas yang bergerak di bidang kemasyarakatan dengan tujuan untuk memanfaatkan ulang limbah dari program pemerintah yaitu makanan bergizi gratis yang didaur ulang menjadi pakan ternak rumahan.
                                 </p>
                                 <a href="#" class="btn btn-success btn-lg rounded-pill px-4 align-self-start">
                                     Download Aplikasi
@@ -75,7 +81,13 @@
                             </div>
                             <div class="col-md-6 p-0">
                                 <div class="hero-image-container">
-                                    <img src="img/app-preview.png" alt="Lumbung Hijau App" class="hero-image">
+                                    <div class="phone-card">
+                                        <img src="img/app-preview.png" alt="Lumbung Hijau App" class="hero-image">
+                                        <!-- Floating background elements -->
+                                        <div class="floating-element floating-1"></div>
+                                        <div class="floating-element floating-2"></div>
+                                        <div class="floating-element floating-3"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -83,11 +95,15 @@
                 </div>
                 
                 <div class="col-lg-4">
-                    <div class="info-card h-100">
+                    <div class="info-card h-100" data-aos="fade-left" data-aos-delay="200">
                         <div class="p-4">
+                            <div class="badge bg-success text-white mb-3 px-3 py-2 rounded-pill">
+                                <i class="bi bi-info-circle me-1"></i>
+                                Tentang Kami
+                            </div>
                             <h5 class="fw-bold mb-3">Tentang Lumbung Hijau</h5>
                             <p class="text-muted mb-4">
-                                Sebuah komunitas yang bergerak di bidang kemasyarakatan dengan tujuan untuk memanfaatkan ulang limbah dari program pemerintah yaitu makanan bergizi gratis yang didaur ulang menjadi pakan ternak rumahan.
+                                Platform digital yang menghubungkan masyarakat dengan sistem pengelolaan limbah yang efisien, aman, dan berdampak positif untuk lingkungan dan ekonomi berkelanjutan.
                             </p>
                             <div class="d-flex align-items-center text-success">
                                 <i class="bi bi-arrow-right me-2"></i>
@@ -101,7 +117,7 @@
             <!-- Problem & Solution Section -->
             <div class="row g-4 mb-5">
                 <div class="col-lg-6">
-                    <div class="problem-card">
+                    <div class="problem-card" data-aos="fade-right">
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="icon-badge bg-danger bg-opacity-10 text-danger me-3">
@@ -111,38 +127,38 @@
                             </div>
                             
                             <div class="problem-list">
-                                <div class="problem-item mb-3">
+                                <div class="problem-item mb-3" data-aos="fade-up" data-aos-delay="100">
                                     <div class="d-flex">
                                         <div class="problem-icon bg-danger bg-opacity-10 text-danger me-3">
                                             <i class="bi bi-lightbulb"></i>
                                         </div>
                                         <div>
-                                            <h6 class="fw-semibold mb-1">Alur Kerja Digital Belum Jelas</h6>
-                                            <p class="text-muted small mb-0">Belum ada pemetaan proses dari setor limbah hingga kompensasi</p>
+                                            <h6 class="fw-semibold mb-1">Belum Jelasnya Alur Kerja Digital</h6>
+                                            <p class="text-muted small mb-0">Belum ada pemetaan proses dari mulai masyarakat setor limbah sampai pengelolaan dan kompensasi</p>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="problem-item mb-3">
+                                <div class="problem-item mb-3" data-aos="fade-up" data-aos-delay="200">
                                     <div class="d-flex">
                                         <div class="problem-icon bg-warning bg-opacity-10 text-warning me-3">
                                             <i class="bi bi-trash"></i>
                                         </div>
                                         <div>
-                                            <h6 class="fw-semibold mb-1">Pengelolaan Jenis Sampah</h6>
-                                            <p class="text-muted small mb-0">Sampah organik dan anorganik belum terkelola optimal</p>
+                                            <h6 class="fw-semibold mb-1">Jenis Sampah</h6>
+                                            <p class="text-muted small mb-0">Sampah organik (nasi & sayur) / sampah anorganik (plastic/kaca/dll) belum terkelola dengan baik</p>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <div class="problem-item">
+                                <div class="problem-item" data-aos="fade-up" data-aos-delay="300">
                                     <div class="d-flex">
                                         <div class="problem-icon bg-primary bg-opacity-10 text-primary me-3">
                                             <i class="bi bi-people"></i>
                                         </div>
                                         <div>
-                                            <h6 class="fw-semibold mb-1">Integrasi Target User</h6>
-                                            <p class="text-muted small mb-0">Perlu sistem terintegrasi untuk yayasan dan warga</p>
+                                            <h6 class="fw-semibold mb-1">Target User</h6>
+                                            <p class="text-muted small mb-0">User ada 2: Yayasan pondok dan warga sekitar (sementara yayasan) perlu sistem yang terintegrasi</p>
                                         </div>
                                     </div>
                                 </div>
@@ -152,45 +168,48 @@
                 </div>
                 
                 <div class="col-lg-6">
-                    <div class="solution-card">
+                    <div class="solution-card" data-aos="fade-left">
                         <div class="p-4">
                             <div class="d-flex align-items-center mb-4">
                                 <div class="icon-badge bg-success bg-opacity-10 text-success me-3">
                                     <i class="bi bi-lightbulb"></i>
                                 </div>
-                                <h4 class="fw-bold mb-0 text-success">Solusi Inovatif</h4>
+                                <h4 class="fw-bold mb-0 text-success">Solusi Yang Kami Tawarkan</h4>
                             </div>
+                            <p class="text-muted mb-4">
+                                Kami menawarkan solusi yang menjawab masalah utama: menjembatani masyarakat dengan sistem pengelolaan limbah digital yang efisien, aman, dan berdampak.
+                            </p>
                             
                             <div class="solution-grid">
-                                <div class="solution-item">
+                                <div class="solution-item" data-aos="fade-up" data-aos-delay="100">
                                     <div class="solution-number">1</div>
                                     <div>
                                         <h6 class="fw-semibold mb-1">Alur Kerja Digital</h6>
-                                        <p class="text-muted small">Pemetaan lengkap proses setor limbah hingga penjualan</p>
+                                        <p class="text-muted small">Membuat pemetaan proses lengkap dari pengguna: setor limbah - pencatatan - kompensasi - pengolahan - penjualan.</p>
                                     </div>
                                 </div>
                                 
-                                <div class="solution-item">
+                                <div class="solution-item" data-aos="fade-up" data-aos-delay="200">
                                     <div class="solution-number">2</div>
                                     <div>
-                                        <h6 class="fw-semibold mb-1">Infrastruktur Cloud</h6>
-                                        <p class="text-muted small">Backend aman untuk data dan sistem kompensasi</p>
+                                        <h6 class="fw-semibold mb-1">Infrastruktur Teknologi</h6>
+                                        <p class="text-muted small">Mengembangkan backend berbasis cloud yang aman dan stabil untuk mendukung penyimpanan data dan sistem kompensasi.</p>
                                     </div>
                                 </div>
                                 
-                                <div class="solution-item">
+                                <div class="solution-item" data-aos="fade-up" data-aos-delay="300">
                                     <div class="solution-number">3</div>
                                     <div>
                                         <h6 class="fw-semibold mb-1">Fitur Inti Aplikasi</h6>
-                                        <p class="text-muted small">Input data, lokasi, poin, riwayat, notifikasi</p>
+                                        <p class="text-muted small">Merancang fitur penting seperti input data, lokasi drop-off, poin kompensasi, riwayat setor, dan notifikasi pengguna.</p>
                                     </div>
                                 </div>
                                 
-                                <div class="solution-item">
+                                <div class="solution-item" data-aos="fade-up" data-aos-delay="400">
                                     <div class="solution-number">4</div>
                                     <div>
-                                        <h6 class="fw-semibold mb-1">UI/UX Friendly</h6>
-                                        <p class="text-muted small">Antarmuka mudah diakses dan user-friendly</p>
+                                        <h6 class="fw-semibold mb-1">Desain Antarmuka</h6>
+                                        <p class="text-muted small">Membuat aplikasi yang user-friendly dan mudah diakses, divalidasi melalui uji coba langsung dengan pengguna.</p>
                                     </div>
                                 </div>
                             </div>
@@ -202,19 +221,19 @@
             <!-- Features Section -->
             <div class="row g-4 mb-5">
                 <div class="col-12">
-                    <div class="features-header text-center mb-4">
+                    <div class="features-header text-center mb-4" data-aos="fade-up">
                         <div class="badge bg-success bg-opacity-10 text-success mb-3 px-3 py-2 rounded-pill">
                             <i class="bi bi-star me-1"></i>
                             Fitur Unggulan
                         </div>
-                        <h2 class="display-6 fw-bold">Jelajahi Fitur Aplikasi</h2>
+                        <h2 class="display-6 fw-bold">Fitur Aplikasi</h2>
                         <p class="text-muted">Teknologi canggih untuk pengelolaan limbah yang efisien</p>
                     </div>
                 </div>
             </div>
 
             <div class="row g-4 mb-5">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature-card">
                         <div class="feature-icon bg-success">
                             <i class="bi bi-phone text-white"></i>
@@ -228,7 +247,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="feature-card">
                         <div class="feature-icon bg-primary">
                             <i class="bi bi-bullseye text-white"></i>
@@ -242,7 +261,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="feature-card">
                         <div class="feature-icon bg-purple">
                             <i class="bi bi-cart text-white"></i>
@@ -256,7 +275,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="feature-card">
                         <div class="feature-icon bg-warning">
                             <i class="bi bi-clock-history text-white"></i>
@@ -270,7 +289,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
                     <div class="feature-card">
                         <div class="feature-icon bg-info">
                             <i class="bi bi-person text-white"></i>
@@ -284,7 +303,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <div class="feature-card">
                         <div class="feature-icon bg-success">
                             <i class="bi bi-wallet text-white"></i>
@@ -301,12 +320,12 @@
 
             <!-- CTA Section -->
             <div class="row g-4 mb-5">
-                <div class="col-12">
+                <div class="col-12" data-aos="fade-up">
                     <div class="cta-card">
                         <div class="row align-items-center">
                             <div class="col-lg-8">
-                                <h3 class="fw-bold text-white mb-2">Siap Merevolusi Praktik Pengelolaan Limbah Anda?</h3>
-                                <p class="text-white-50 mb-0">Bergabunglah dengan komunitas peduli lingkungan dan mulai perjalanan hijau Anda hari ini.</p>
+                                <h3 class="fw-bold text-white mb-2">Mulai Perjalanan Hijau Anda</h3>
+                                <p class="text-white-50 mb-0">Download aplikasi Lumbung Hijau sekarang dan bergabunglah dengan komunitas peduli lingkungan untuk masa depan yang berkelanjutan.</p>
                             </div>
                             <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
                                 <a href="#" class="btn btn-light btn-lg rounded-pill px-5">
@@ -384,6 +403,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Custom JS -->
-    <script src="js/script.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>
