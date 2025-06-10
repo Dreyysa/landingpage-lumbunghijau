@@ -128,32 +128,34 @@ body {
   margin-bottom: 1.5rem; /* Reduced margin */
 }
 
+/* Add new wrapper for better positioning */
+.phone-mockup-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 /* Completely redesigned phone mockup container */
 .phone-mockup-container {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto 0 0; /* Changed from '0 auto' to '0 auto 0 0' to remove right margin */
-  padding: 2rem;
-  background: linear-gradient(135deg, rgba(0, 170, 19, 0.08) 0%, rgba(0, 170, 19, 0.12) 100%);
+  max-width: 450px;
+  padding: 1.5rem;
+  background: rgba(0, 170, 19, 0.05);
   border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(0, 170, 19, 0.15), 0 4px 15px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 170, 19, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 170, 19, 0.1);
+  border: none;
   text-align: center;
-  margin-left: -2rem; /* Add negative left margin to pull it left */
 }
 
 .phone-mockup-image {
-  max-width: 280px;
+  max-width: 320px;
   height: auto;
   margin: 0 auto;
   display: inline-block;
-  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
   transition: transform 0.5s ease;
-}
-
-.phone-mockup-image:hover {
-  transform: scale(1.05) rotate(2deg);
 }
 
 /* Enhanced buttons with reduced spacing */
