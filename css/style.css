@@ -133,13 +133,14 @@ body {
   position: relative;
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 0 auto 0 0; /* Changed from '0 auto' to '0 auto 0 0' to remove right margin */
   padding: 2rem;
   background: linear-gradient(135deg, rgba(0, 170, 19, 0.08) 0%, rgba(0, 170, 19, 0.12) 100%);
   border-radius: 30px;
   box-shadow: 0 10px 30px rgba(0, 170, 19, 0.15), 0 4px 15px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(0, 170, 19, 0.1);
   text-align: center;
+  margin-left: -2rem; /* Add negative left margin to pull it left */
 }
 
 .phone-mockup-image {
@@ -475,7 +476,8 @@ footer .form-control:focus {
   }
 
   .phone-mockup-container {
-    padding: 1.5rem; /* Reduced padding on mobile */
+    padding: 1.5rem;
+    margin-left: 0; /* Reset margin on mobile */
   }
 }
 
