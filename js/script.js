@@ -1,4 +1,4 @@
-// Enhanced JavaScript for Lumbung Hijau with improved animations
+// Enhanced JavaScript for Lumbung Hijau with improved animations and navigation
 
 // Declare AOS and bootstrap variables
 const AOS = window.AOS
@@ -37,13 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
       navbar.style.backdropFilter = "none"
     }
 
-    // Hide/show navbar on scroll
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-      navbar.style.transform = "translateY(-100%)"
-    } else {
-      navbar.style.transform = "translateY(0)"
-    }
-
     lastScrollTop = scrollTop
     ticking = false
   }
@@ -57,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("scroll", requestNavbarUpdate, { passive: true })
 
-  // Enhanced smooth scrolling
+  // Enhanced smooth scrolling with offset for fixed navbar
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault()
@@ -65,7 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector(targetId)
 
       if (target) {
-        const offsetTop = target.offsetTop - 80
+        const navbarHeight = document.querySelector(".navbar").offsetHeight
+        const offsetTop = target.offsetTop - navbarHeight - 20
 
         // Smooth scroll with easing
         window.scrollTo({
@@ -79,75 +73,55 @@ document.addEventListener("DOMContentLoaded", () => {
           const bsCollapse = new bootstrap.Collapse(navbarCollapse)
           bsCollapse.hide()
         }
+
+        // Update active nav link
+        updateActiveNavLink(targetId)
       }
     })
   })
 
-  // Enhanced parallax effect with performance optimization
-  const heroSection = document.querySelector(".hero-section")
-  const phoneContainer = document.querySelector(".phone-mockup-container")
-  const heroContent = document.querySelector(".hero-content")
-  let parallaxTicking = false
+  // Active navigation link based on scroll position
+  function updateActiveNavLink(activeId = null) {
+    const navLinks = document.querySelectorAll(".nav-link")
+    const sections = document.querySelectorAll("section[id]")
 
-  function updateParallax() {
-    const scrolled = window.pageYOffset
-    const heroHeight = heroSection ? heroSection.offsetHeight : 0
+    if (activeId) {
+      // Manual update when clicking nav link
+      navLinks.forEach((link) => {
+        link.classList.remove("active")
+        if (link.getAttribute("href") === activeId) {
+          link.classList.add("active")
+        }
+      })
+    } else {
+      // Auto update based on scroll position
+      const scrollPos = window.scrollY + 100
 
-    if (scrolled < heroHeight) {
-      const rate = scrolled * 0.5
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop
+        const sectionHeight = section.offsetHeight
+        const sectionId = section.getAttribute("id")
 
-      if (phoneContainer) {
-        phoneContainer.style.transform = `translateY(${-rate * 0.1}px) translateZ(0)`
-      }
-
-      if (heroContent) {
-        heroContent.style.transform = `translateY(${rate * 0.05}px) translateZ(0)`
-      }
+        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+          navLinks.forEach((link) => {
+            link.classList.remove("active")
+            if (link.getAttribute("href") === `#${sectionId}`) {
+              link.classList.add("active")
+            }
+          })
+        }
+      })
     }
-
-    parallaxTicking = false
   }
 
-  function requestParallaxUpdate() {
-    if (!parallaxTicking && window.innerWidth > 768) {
-      requestAnimationFrame(updateParallax)
-      parallaxTicking = true
-    }
-  }
-
-  window.addEventListener("scroll", requestParallaxUpdate, { passive: true })
-
-  // Enhanced intersection observer for animations
-  const observerOptions = {
-    threshold: [0.1, 0.3, 0.5],
-    rootMargin: "0px 0px -50px 0px",
-  }
-
-  const animationObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        // Add staggered delay for multiple elements
-        setTimeout(() => {
-          entry.target.classList.add("animate-in")
-          entry.target.style.opacity = "1"
-          entry.target.style.transform = "translateY(0)"
-        }, index * 100)
-
-        // Unobserve after animation
-        animationObserver.unobserve(entry.target)
-      }
-    })
-  }, observerOptions)
-
-  // Apply animation observer to elements
-  const animatedElements = document.querySelectorAll(".card, .solution-item, .icon-circle, .solution-number")
-
-  animatedElements.forEach((element) => {
-    element.style.opacity = "0"
-    element.style.transform = "translateY(30px)"
-    element.style.transition = "all 0.6s cubic-bezier(0.4, 0, 0.2, 1)"
-    animationObserver.observe(element)
-  })
+  // Update active nav on scroll
+  window.addEventListener(
+    "scroll",
+    () => {
+      updateActiveNavLink()
+    },
+    { passive: true },
+  )
 
   // Enhanced button interactions
   document.querySelectorAll(".btn").forEach((button) => {
@@ -195,20 +169,20 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   // Card hover animations
-  document.querySelectorAll(".card").forEach((card) => {
-    card.addEventListener("mouseenter", function () {
-      this.style.transform = "translateY(-8px) scale(1.02)"
-      this.style.boxShadow = "0 20px 40px rgba(0, 0, 0, 0.1)"
-    })
+  document
+    .querySelectorAll(".card, .hero-card, .info-card, .problem-card, .solution-card, .feature-card")
+    .forEach((card) => {
+      card.addEventListener("mouseenter", function () {
+        this.style.transform = "translateY(-8px) scale(1.02)"
+      })
 
-    card.addEventListener("mouseleave", function () {
-      this.style.transform = "translateY(0) scale(1)"
-      this.style.boxShadow = ""
+      card.addEventListener("mouseleave", function () {
+        this.style.transform = "translateY(0) scale(1)"
+      })
     })
-  })
 
   // Enhanced phone mockup animations
-  const phoneMockup = document.querySelector(".phone-mockup")
+  const phoneMockup = document.querySelector(".hero-image")
   if (phoneMockup) {
     // Floating animation
     phoneMockup.style.animation = "float 6s ease-in-out infinite"
@@ -225,59 +199,10 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Solution number animations
-  document.querySelectorAll(".solution-number").forEach((number, index) => {
-    number.addEventListener("mouseenter", function () {
-      this.style.transform = "scale(1.15) rotate(5deg)"
-      this.style.boxShadow = "0 15px 35px rgba(0, 170, 19, 0.4)"
-    })
-
-    number.addEventListener("mouseleave", function () {
-      this.style.transform = "scale(1) rotate(0deg)"
-      this.style.boxShadow = ""
-    })
-  })
-
-  // Icon circle animations
-  document.querySelectorAll(".icon-circle").forEach((icon) => {
-    icon.addEventListener("mouseenter", function () {
-      this.style.transform = "scale(1.2) rotate(10deg)"
-      this.style.boxShadow = "0 10px 25px rgba(0, 0, 0, 0.15)"
-    })
-
-    icon.addEventListener("mouseleave", function () {
-      this.style.transform = "scale(1) rotate(0deg)"
-      this.style.boxShadow = ""
-    })
-  })
-
-  // Counter animation for numbers
-  function animateCounter(element, target, duration = 2000) {
-    let start = 0
-    const increment = target / (duration / 16)
-    const timer = setInterval(() => {
-      start += increment
-      element.textContent = Math.floor(start)
-      if (start >= target) {
-        element.textContent = target
-        clearInterval(timer)
-      }
-    }, 16)
-  }
-
-  // Scroll progress indicator (optional)
+  // Scroll progress indicator
   function createScrollProgress() {
     const progressBar = document.createElement("div")
-    progressBar.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 3px;
-      background: linear-gradient(90deg, #00AA13, #008A10);
-      z-index: 9999;
-      transition: width 0.1s ease;
-    `
+    progressBar.className = "scroll-progress"
     document.body.appendChild(progressBar)
 
     window.addEventListener(
@@ -293,14 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize scroll progress
   createScrollProgress()
 
-  // Performance optimization: Reduce animations on low-end devices
-  const isLowEndDevice = navigator.hardwareConcurrency < 4 || navigator.deviceMemory < 4
-
-  if (isLowEndDevice) {
-    document.documentElement.style.setProperty("--animation-duration", "0.3s")
-    document.documentElement.style.setProperty("--animation-delay", "0s")
-  }
-
   // Preloader animation
   window.addEventListener("load", () => {
     document.body.classList.add("loaded")
@@ -308,7 +225,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Trigger entrance animations
     setTimeout(() => {
       document.querySelectorAll(".hero-content > *").forEach((element, index) => {
-        element.style.animation = `fadeInUp 0.8s ease-out ${index * 0.1}s both`
+        if (element) {
+          element.style.animation = `fadeInUp 0.8s ease-out ${index * 0.1}s both`
+        }
       })
     }, 100)
   })
@@ -326,6 +245,28 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 })
 
+// Download app function
+function downloadApp() {
+  // Simulate download process
+  const button = event.target.closest(".btn")
+  const originalText = button.innerHTML
+
+  button.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Memproses...'
+  button.disabled = true
+
+  setTimeout(() => {
+    button.innerHTML = '<i class="bi bi-check-circle me-2"></i>Download Dimulai!'
+
+    setTimeout(() => {
+      button.innerHTML = originalText
+      button.disabled = false
+
+      // Show alert for demo purposes
+      alert("Terima kasih! APK Lumbung Hijau akan segera tersedia untuk download.")
+    }, 2000)
+  }, 1500)
+}
+
 // Enhanced CSS animations via JavaScript
 const enhancedStyles = document.createElement("style")
 enhancedStyles.textContent = `
@@ -333,15 +274,6 @@ enhancedStyles.textContent = `
     to {
       transform: scale(4);
       opacity: 0;
-    }
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
     }
   }
 
@@ -356,43 +288,10 @@ enhancedStyles.textContent = `
     }
   }
 
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-  }
-
-  .animate-in {
-    animation: fadeInUp 0.6s ease-out;
-  }
-
-  .btn {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .solution-number {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .icon-circle {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .navbar {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .phone-mockup {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  .nav-link.active {
+    color: var(--bs-success) !important;
+    background-color: rgba(0, 170, 19, 0.1);
+    font-weight: 600;
   }
 
   /* Reduce motion for users who prefer it */
@@ -405,7 +304,7 @@ enhancedStyles.textContent = `
   }
 
   /* Performance optimizations */
-  .phone-mockup-container,
+  .phone-card,
   .hero-content {
     will-change: transform;
   }
@@ -413,7 +312,7 @@ enhancedStyles.textContent = `
   .card:hover,
   .btn:hover,
   .solution-number:hover,
-  .icon-circle:hover {
+  .feature-icon:hover {
     will-change: transform;
   }
 `

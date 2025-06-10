@@ -7,6 +7,7 @@
   --border-radius: 24px;
   --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.12);
+  --navbar-height: 80px;
 }
 
 * {
@@ -16,11 +17,17 @@
 body {
   background-color: #fafbfc;
   color: #2d3748;
+  padding-top: 0;
 }
 
 /* Custom Colors */
 .bg-purple {
   background-color: var(--purple) !important;
+}
+
+/* Section Padding */
+.section-padding {
+  padding: 100px 0;
 }
 
 /* Navigation */
@@ -29,6 +36,8 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   padding: 1rem 0;
   transition: all 0.3s ease;
+  height: var(--navbar-height);
+  z-index: 1050;
 }
 
 .navbar-brand {
@@ -71,10 +80,13 @@ body {
   transform: translateY(-2px);
 }
 
-/* Main Container */
-.main-container {
-  padding: 2rem 0;
+/* Hero Section */
+.hero-section {
+  padding: 120px 0 100px;
+  background: linear-gradient(135deg, #fafbfc 0%, #f1f5f9 100%);
   min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 /* Hero Card */
@@ -228,7 +240,6 @@ body {
   border-radius: var(--border-radius);
   box-shadow: var(--card-shadow);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  height: 100%;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -256,27 +267,27 @@ body {
 }
 
 .problem-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   transition: transform 0.3s ease;
+  font-size: 1.5rem;
 }
 
-.problem-item:hover .problem-icon {
+.problem-card:hover .problem-icon {
   transform: scale(1.1);
 }
 
 /* Solution Card */
 .solution-card {
-  background: linear-gradient(135deg, rgba(0, 170, 19, 0.02) 0%, rgba(0, 170, 19, 0.05) 100%);
+  background: white;
   border-radius: var(--border-radius);
   box-shadow: var(--card-shadow);
   border: 1px solid rgba(0, 170, 19, 0.1);
-  height: 100%;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -303,56 +314,21 @@ body {
   transform: translateY(-2px);
 }
 
-.solution-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.solution-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  transition: transform 0.3s ease;
-}
-
-.solution-item:hover {
-  transform: translateX(5px);
-}
-
 .solution-number {
-  width: 32px;
-  height: 32px;
-  background: var(--bs-success);
-  color: white;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 0.875rem;
-  flex-shrink: 0;
+  font-size: 1.25rem;
   transition: all 0.3s ease;
 }
 
-.solution-item:hover .solution-number {
+.solution-card:hover .solution-number {
   transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 170, 19, 0.3);
-}
-
-/* Icon Badge */
-.icon-badge {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  transition: transform 0.3s ease;
-}
-
-.icon-badge:hover {
-  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(0, 170, 19, 0.3);
 }
 
 /* Feature Cards */
@@ -362,7 +338,6 @@ body {
   box-shadow: var(--card-shadow);
   border: 1px solid rgba(0, 0, 0, 0.05);
   padding: 2rem;
-  height: 100%;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -541,8 +516,13 @@ footer a:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .main-container {
-    padding: 1rem 0;
+  .section-padding {
+    padding: 60px 0;
+  }
+
+  .hero-section {
+    padding: 100px 0 60px;
+    min-height: auto;
   }
 
   .hero-card {
@@ -570,6 +550,11 @@ footer a:hover {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Scroll offset for fixed navbar */
+section {
+  scroll-margin-top: var(--navbar-height);
 }
 
 /* Loading states */
